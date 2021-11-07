@@ -34,15 +34,15 @@ namespace Clientes
             this.PctFoto = new System.Windows.Forms.PictureBox();
             this.LblCiudad = new System.Windows.Forms.Label();
             this.LblVista = new System.Windows.Forms.Label();
-            this.LstClientes = new System.Windows.Forms.ListView();
+            this.LvwClientes = new System.Windows.Forms.ListView();
             this.ClmNombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClmApellidos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClmEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClmComentarios = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.CbCiudad = new System.Windows.Forms.ComboBox();
-            this.CbVista = new System.Windows.Forms.ComboBox();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.CboCiudad = new System.Windows.Forms.ComboBox();
+            this.CboVista = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.PctFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,22 +76,22 @@ namespace Clientes
             this.LblVista.TabIndex = 2;
             this.LblVista.Text = "Vista";
             // 
-            // LstClientes
+            // LvwClientes
             // 
-            this.LstClientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LvwClientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ClmNombre,
             this.ClmApellidos,
             this.ClmEmail,
             this.ClmComentarios});
-            this.LstClientes.HideSelection = false;
-            this.LstClientes.LargeImageList = this.imageList2;
-            this.LstClientes.Location = new System.Drawing.Point(33, 162);
-            this.LstClientes.Name = "LstClientes";
-            this.LstClientes.Size = new System.Drawing.Size(683, 223);
-            this.LstClientes.SmallImageList = this.imageList1;
-            this.LstClientes.TabIndex = 3;
-            this.LstClientes.UseCompatibleStateImageBehavior = false;
-            this.LstClientes.View = System.Windows.Forms.View.Details;
+            this.LvwClientes.HideSelection = false;
+            this.LvwClientes.LargeImageList = this.imageList2;
+            this.LvwClientes.Location = new System.Drawing.Point(33, 162);
+            this.LvwClientes.Name = "LvwClientes";
+            this.LvwClientes.Size = new System.Drawing.Size(683, 223);
+            this.LvwClientes.SmallImageList = this.imageList1;
+            this.LvwClientes.TabIndex = 3;
+            this.LvwClientes.UseCompatibleStateImageBehavior = false;
+            this.LvwClientes.View = System.Windows.Forms.View.Details;
             // 
             // ClmNombre
             // 
@@ -113,25 +113,12 @@ namespace Clientes
             this.ClmComentarios.Text = "Comentarios";
             this.ClmComentarios.Width = 600;
             // 
-            // CbCiudad
+            // imageList2
             // 
-            this.CbCiudad.FormattingEnabled = true;
-            this.CbCiudad.Location = new System.Drawing.Point(213, 101);
-            this.CbCiudad.Name = "CbCiudad";
-            this.CbCiudad.Size = new System.Drawing.Size(241, 21);
-            this.CbCiudad.TabIndex = 4;
-            this.CbCiudad.DropDown += new System.EventHandler(this.CbCiudad_DropDown);
-            this.CbCiudad.SelectedIndexChanged += new System.EventHandler(this.CbCiudad_SelectedIndexChanged);
-            // 
-            // CbVista
-            // 
-            this.CbVista.FormattingEnabled = true;
-            this.CbVista.Location = new System.Drawing.Point(578, 101);
-            this.CbVista.Name = "CbVista";
-            this.CbVista.Size = new System.Drawing.Size(138, 21);
-            this.CbVista.TabIndex = 5;
-            this.CbVista.DropDown += new System.EventHandler(this.CbVista_DropDown);
-            this.CbVista.SelectedIndexChanged += new System.EventHandler(this.CbVista_SelectedIndexChanged);
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "msn.ico");
+            this.imageList2.Images.SetKeyName(1, "star_favourite_21830.ico");
             // 
             // imageList1
             // 
@@ -140,12 +127,25 @@ namespace Clientes
             this.imageList1.Images.SetKeyName(0, "msn.ico");
             this.imageList1.Images.SetKeyName(1, "star_favourite_21830.ico");
             // 
-            // imageList2
+            // CboCiudad
             // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "msn.ico");
-            this.imageList2.Images.SetKeyName(1, "star_favourite_21830.ico");
+            this.CboCiudad.FormattingEnabled = true;
+            this.CboCiudad.Location = new System.Drawing.Point(213, 101);
+            this.CboCiudad.Name = "CboCiudad";
+            this.CboCiudad.Size = new System.Drawing.Size(241, 21);
+            this.CboCiudad.TabIndex = 4;
+            this.CboCiudad.DropDown += new System.EventHandler(this.CbCiudad_DropDown);
+            this.CboCiudad.SelectedIndexChanged += new System.EventHandler(this.CbCiudad_SelectedIndexChanged);
+            // 
+            // CboVista
+            // 
+            this.CboVista.FormattingEnabled = true;
+            this.CboVista.Location = new System.Drawing.Point(578, 101);
+            this.CboVista.Name = "CboVista";
+            this.CboVista.Size = new System.Drawing.Size(138, 21);
+            this.CboVista.TabIndex = 5;
+            this.CboVista.DropDown += new System.EventHandler(this.CbVista_DropDown);
+            this.CboVista.SelectedIndexChanged += new System.EventHandler(this.CbVista_SelectedIndexChanged);
             // 
             // FrmConsultaClientesList
             // 
@@ -153,9 +153,9 @@ namespace Clientes
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(728, 412);
-            this.Controls.Add(this.CbVista);
-            this.Controls.Add(this.CbCiudad);
-            this.Controls.Add(this.LstClientes);
+            this.Controls.Add(this.CboVista);
+            this.Controls.Add(this.CboCiudad);
+            this.Controls.Add(this.LvwClientes);
             this.Controls.Add(this.LblVista);
             this.Controls.Add(this.LblCiudad);
             this.Controls.Add(this.PctFoto);
@@ -173,13 +173,13 @@ namespace Clientes
         private System.Windows.Forms.PictureBox PctFoto;
         private System.Windows.Forms.Label LblCiudad;
         private System.Windows.Forms.Label LblVista;
-        private System.Windows.Forms.ListView LstClientes;
+        private System.Windows.Forms.ListView LvwClientes;
         private System.Windows.Forms.ColumnHeader ClmNombre;
         private System.Windows.Forms.ColumnHeader ClmApellidos;
         private System.Windows.Forms.ColumnHeader ClmEmail;
         private System.Windows.Forms.ColumnHeader ClmComentarios;
-        private System.Windows.Forms.ComboBox CbCiudad;
-        private System.Windows.Forms.ComboBox CbVista;
+        private System.Windows.Forms.ComboBox CboCiudad;
+        private System.Windows.Forms.ComboBox CboVista;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList2;
     }

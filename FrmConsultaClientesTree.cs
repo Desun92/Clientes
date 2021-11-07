@@ -25,11 +25,11 @@ namespace Clientes
             this.ListaClientes = listaClientes;
         }
 
-        private void FrmConsultaClientesTree_Load(object sender, EventArgs e)
+        private void FrmConsultaClientesTree_Load(object sender, EventArgs e) //Método que carga el Treeview al cargar el formulario
         {
             if (ListaClientes.Count > 0)
             {
-                TrvClientes.Nodes.Clear();
+                TreClientes.Nodes.Clear();
                 LimpiarCampos();
                 int contadorNodos = 0;
                 ArrayList ciudades = new ArrayList();
@@ -46,8 +46,8 @@ namespace Clientes
                 //Para cada ciudad que haya en el arrayList, creamos un nodo
                 foreach (String ciudad in ciudades)
                 {
-                    TrvClientes.Nodes.Add(ciudad, ciudad, "tierra", "tierra.ico");
-                    TrvClientes.SelectedNode = TrvClientes.Nodes[contadorNodos];
+                    TreClientes.Nodes.Add(ciudad, ciudad, "tierra", "tierra.ico");
+                    TreClientes.SelectedNode = TreClientes.Nodes[contadorNodos];
 
                     //Para esa ciudad que hemos creado, le añadimos los apellidos de los clientes que pertenezcan a dicha ciudad
                     foreach (Cliente cliente in ListaClientes)
@@ -56,11 +56,11 @@ namespace Clientes
                         {
                             if (cliente.getVip())
                             {
-                                TrvClientes.SelectedNode.Nodes.Add(cliente.getApellidos(), cliente.getApellidos(), 1);
+                                TreClientes.SelectedNode.Nodes.Add(cliente.getApellidos(), cliente.getApellidos(), 1);
                             }
                             else
                             {
-                                TrvClientes.SelectedNode.Nodes.Add(cliente.getApellidos(), cliente.getApellidos(), 2);
+                                TreClientes.SelectedNode.Nodes.Add(cliente.getApellidos(), cliente.getApellidos(), 2);
                             }
                         }
                     }
@@ -69,7 +69,7 @@ namespace Clientes
             }
         }
 
-        public void LimpiarCampos()
+        public void LimpiarCampos() //Método que limpia los campos
         {
             TxtNombre.Clear();
             TxtApellidos.Clear();
@@ -79,16 +79,16 @@ namespace Clientes
             PctFoto.Image = null;
         }
 
-        private void TrvClientes_DoubleClick(object sender, EventArgs e)
+        private void TrvClientes_DoubleClick(object sender, EventArgs e) //Metodo que recoge la información de un cliente al hacer doble click sobre él
         {
             if(ListaClientes.Count > 0)
             {
                 LimpiarCampos();
                 //Comprobamos que el nodo seleccionado no sea el de una ciudad, si no el de un cliente
-                if(TrvClientes.SelectedNode.Parent != null)
+                if(TreClientes.SelectedNode.Parent != null)
                 {
                     //Si es el de un cliente, obtenemos sus datos recorriendo nuestra lista de clientes y exponiéndolos en los campos de texto correspondientes
-                    String datos = TrvClientes.SelectedNode.Text;
+                    String datos = TreClientes.SelectedNode.Text;
 
                     foreach(Cliente cliente in ListaClientes)
                     {

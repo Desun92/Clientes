@@ -32,7 +32,7 @@ namespace Clientes
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaClientesTree));
             this.PctFoto = new System.Windows.Forms.PictureBox();
-            this.TrvClientes = new System.Windows.Forms.TreeView();
+            this.TreClientes = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.TxtApellidos = new System.Windows.Forms.TextBox();
@@ -56,16 +56,16 @@ namespace Clientes
             this.PctFoto.TabIndex = 0;
             this.PctFoto.TabStop = false;
             // 
-            // TrvClientes
+            // TreClientes
             // 
-            this.TrvClientes.ImageIndex = 0;
-            this.TrvClientes.ImageList = this.imageList1;
-            this.TrvClientes.Location = new System.Drawing.Point(68, 161);
-            this.TrvClientes.Name = "TrvClientes";
-            this.TrvClientes.SelectedImageIndex = 0;
-            this.TrvClientes.Size = new System.Drawing.Size(261, 239);
-            this.TrvClientes.TabIndex = 1;
-            this.TrvClientes.DoubleClick += new System.EventHandler(this.TrvClientes_DoubleClick);
+            this.TreClientes.ImageIndex = 0;
+            this.TreClientes.ImageList = this.imageList1;
+            this.TreClientes.Location = new System.Drawing.Point(68, 161);
+            this.TreClientes.Name = "TreClientes";
+            this.TreClientes.SelectedImageIndex = 0;
+            this.TreClientes.Size = new System.Drawing.Size(261, 239);
+            this.TreClientes.TabIndex = 1;
+            this.TreClientes.DoubleClick += new System.EventHandler(this.TrvClientes_DoubleClick);
             // 
             // imageList1
             // 
@@ -177,7 +177,7 @@ namespace Clientes
             this.Controls.Add(this.TxtCiudad);
             this.Controls.Add(this.TxtApellidos);
             this.Controls.Add(this.TxtNombre);
-            this.Controls.Add(this.TrvClientes);
+            this.Controls.Add(this.TreClientes);
             this.Controls.Add(this.PctFoto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmConsultaClientesTree";
@@ -193,7 +193,7 @@ namespace Clientes
         #endregion
 
         private System.Windows.Forms.PictureBox PctFoto;
-        private System.Windows.Forms.TreeView TrvClientes;
+        private System.Windows.Forms.TreeView TreClientes;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.TextBox TxtApellidos;
         private System.Windows.Forms.TextBox TxtCiudad;

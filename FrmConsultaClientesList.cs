@@ -25,32 +25,32 @@ namespace Clientes
             this.ListaClientes = listaClientes;
         }
 
-        private void CbCiudad_DropDown(object sender, EventArgs e)
+        private void CbCiudad_DropDown(object sender, EventArgs e) //Método que "pone" las ciudades que tenemos disponibles en el ComboBox
         {
-            CbCiudad.Items.Clear();
+            CboCiudad.Items.Clear();
             ArrayList listaCiudades = new ArrayList();
 
             foreach (Cliente cliente in ListaClientes)
             {
-                if (!listaCiudades.Contains(cliente.getCiudad()))
+                if (!listaCiudades.Contains(cliente.getCiudad())) //Si ya tenemos la ciudad una vez, no la volvemos a añadir
                 {
                     listaCiudades.Add(cliente.getCiudad());
                 }
             }
 
-           foreach(String ciudad in listaCiudades)
+           foreach(String ciudad in listaCiudades) //Añadimos a la ComboBox las ciudades
            {
-                CbCiudad.Items.Add(ciudad);
+                CboCiudad.Items.Add(ciudad);
            }
         }
 
-        private void CbCiudad_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbCiudad_SelectedIndexChanged(object sender, EventArgs e) //Método que actualiza la información de la ListView al cambiar el valor del ComboBox
         {
-            LstClientes.Items.Clear();
-            String ciudad = CbCiudad.Text;
+            LvwClientes.Items.Clear();
+            String ciudad = CboCiudad.Text;
             List<Cliente> listaMostrar = new List<Cliente>();
 
-            foreach(Cliente cliente in ListaClientes)
+            foreach(Cliente cliente in ListaClientes) //Guardamos en nuestro array para mostrar los datos de los clientes aquellos clientes que pertenezcan a la ciudad que está en el ComboBox
             {
                 if(cliente.getCiudad() == ciudad)
                 {
@@ -58,11 +58,11 @@ namespace Clientes
                 }
             }
 
-            foreach(Cliente cliente in listaMostrar)
+            foreach(Cliente cliente in listaMostrar) //Mostramos los datos de los clientes y le añadimos un icono u otro dependiendo de si es o no VIP
             {
                 int indiceFoto = 0;
-                if (CbVista.Text == "")
-                    LstClientes.View = View.Details;
+                if (CboVista.Text == "")
+                    LvwClientes.View = View.Details;
 
                 if (cliente.getVip() == true)
                     indiceFoto = 1;
@@ -73,38 +73,38 @@ namespace Clientes
                 lista.SubItems.Add(cliente.getEmail());
                 lista.SubItems.Add(cliente.getComentario());
 
-                LstClientes.Items.Add(lista);
+                LvwClientes.Items.Add(lista);
             }
         }
 
-        private void CbVista_DropDown(object sender, EventArgs e)
+        private void CbVista_DropDown(object sender, EventArgs e) //Método que despliega las distintas opciones en el ComboBox Vista
         {
-            CbVista.Items.Clear();
-            CbVista.Items.Add("Iconos grandes");
-            CbVista.Items.Add("Detalles");
-            CbVista.Items.Add("Iconos pequeños");
-            CbVista.Items.Add("Lista");
-            CbVista.Items.Add("Mosaico");
+            CboVista.Items.Clear();
+            CboVista.Items.Add("Iconos grandes");
+            CboVista.Items.Add("Detalles");
+            CboVista.Items.Add("Iconos pequeños");
+            CboVista.Items.Add("Lista");
+            CboVista.Items.Add("Mosaico");
         }
 
-        private void CbVista_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbVista_SelectedIndexChanged(object sender, EventArgs e) //Método que cambia la distribución de la información del ListView en función de la opción seleccionada en el ComboBox
         {
-            switch (CbVista.Text)
+            switch (CboVista.Text)
             {
                 case "Iconos grandes":
-                    LstClientes.View = View.LargeIcon;
+                    LvwClientes.View = View.LargeIcon;
                     break;
                 case "Detalles":
-                    LstClientes.View = View.Details;
+                    LvwClientes.View = View.Details;
                     break;
                 case "Iconos pequeños":
-                    LstClientes.View = View.SmallIcon;
+                    LvwClientes.View = View.SmallIcon;
                     break;
                 case "Lista":
-                    LstClientes.View = View.List;
+                    LvwClientes.View = View.List;
                     break;
                 case "Mosaico":
-                    LstClientes.View = View.Tile;
+                    LvwClientes.View = View.Tile;
                     break;
             }
         }

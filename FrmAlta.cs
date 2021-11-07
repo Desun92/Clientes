@@ -14,10 +14,10 @@ namespace Clientes
 {
     public partial class FrmAlta : Form
     {
-        private List<Cliente> ListaClientes;
-        String RutaImagen = "";
-        String NombreClienteSeleccionado = null;
-        String ApellidosClienteSeleccionado = null;
+        private List<Cliente> ListaClientes; //Lista para trabajar con los clientes
+        String RutaImagen = ""; //String para cargar la ruta de la imagen adjunta a los clientes
+        String NombreClienteSeleccionado = null; //String para comprobar el nombre de un cliente seleccionado
+        String ApellidosClienteSeleccionado = null; //String para comprobar los apellidos de un cliente seleccionado
         public FrmAlta()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace Clientes
 
             ArrayList listaNombresApellidos = new ArrayList();
 
+            //Añadimos a la ListBox el nombre y apellidos de los clientes por orden alfabético
             foreach (Cliente clienteLista in ListaClientes)
             {
                 String nombreApellidos = clienteLista.getApellidos();
@@ -53,11 +54,13 @@ namespace Clientes
             LimpiarCampos();
         }
 
-        private void BtnGuardar_Click(object sender, EventArgs e)
+        private void BtnGuardar_Click(object sender, EventArgs e) //Método para guardar un cliente nuevo en la lista
         {
+            //Si falta algún campo por rellenar, se lo advertimos al usuario, en caso contrario comenzamos a trabajar
             if(TxtNombre.Text != "" && TxtApellidos.Text != "" && TxtCiudad.Text != "" && TxtEmail.Text != "" && TxtComentario.Text != "")
             {
                 String email = TxtEmail.Text;
+                //Si el email es válido (tiene formato correcto) continuamos, si no, se lo advertimos al usuario
                 if (EmailValido())
                 {
                     String nombreComparar = TxtNombre.Text.ToUpper();
@@ -76,6 +79,7 @@ namespace Clientes
                     else
                         cliente = new Cliente(nombre, apellidos, ciudad, email, comentario, vip);
 
+                    //Comparamos que no tengamos ya al cliente en la lista mirando su nombre y apellidos en mayúscula para evitar posibles nombres iguales pero en minúscula.
                     foreach (Cliente clienteLista in ListaClientes)
                     {
                         String nombreCliente = clienteLista.getNombre().ToUpper();
@@ -88,6 +92,7 @@ namespace Clientes
                         }
                     }
 
+                    //Si no está, lo añadimos a nuestra lista de clientes y a nuestra ListBox
                     if (!esta)
                     {
                         ListaClientes.Add(cliente);
@@ -120,7 +125,7 @@ namespace Clientes
             }
         }
 
-        private void BtnCargarFoto_Click(object sender, EventArgs e)
+        private void BtnCargarFoto_Click(object sender, EventArgs e) //Método para cargar la foto del cliente
         {
             try
             {
@@ -137,25 +142,24 @@ namespace Clientes
             }
         }
 
-        private void LstClientes_Click(object sender, EventArgs e)
+        private void LstClientes_Click(object sender, EventArgs e) //Método para seleccionar un cliente a borrar
         {
             if (LstClientes.Items.Count > 0)
             {
-                ListBox listBox = (ListBox)sender;
-                String ClienteSeleccionado = listBox.SelectedItem.ToString();
-                String[] nombreApellidosCliente = ClienteSeleccionado.Split(',');
-                ApellidosClienteSeleccionado = nombreApellidosCliente[0];
-                NombreClienteSeleccionado = nombreApellidosCliente[1];
+                String ClienteSeleccionado = LstClientes.SelectedItem.ToString(); //Metemos el cliente seleccionado en un String
+                String[] nombreApellidosCliente = ClienteSeleccionado.Split(','); //Separamos por un lado el nombre y por el otro los apellidos
+                ApellidosClienteSeleccionado = nombreApellidosCliente[0]; //Guardamos los apellidos en una variable
+                NombreClienteSeleccionado = nombreApellidosCliente[1]; //Guardamos el nombre en otra
             }
         }
 
-        private void BtnBorrar_Click(object sender, EventArgs e)
+        private void BtnBorrar_Click(object sender, EventArgs e) //Método para borrar un cliente
         {
-            if(ApellidosClienteSeleccionado != null && NombreClienteSeleccionado != null)
+            if(ApellidosClienteSeleccionado != null && NombreClienteSeleccionado != null) //Si no tenemos ningún cliente seleccionado, no hacemos nada
             {
                 int indice = 0;
                 Boolean esta = false;
-                foreach(Cliente cliente in ListaClientes)
+                foreach(Cliente cliente in ListaClientes) //Comprobamos que el cliente seleccionado está en nuestra lista
                 {
                     if(cliente.getApellidos() == ApellidosClienteSeleccionado && cliente.getNombre() == NombreClienteSeleccionado)
                     {
@@ -165,13 +169,13 @@ namespace Clientes
                     indice++;
                 }
 
-                if (esta)
+                if (esta) //Si está, lo borramos en el índice en el que se encuentre
                 {
                     ListaClientes.RemoveAt(indice);
 
                     ArrayList listaNombresApellidos = new ArrayList();
 
-                    foreach (Cliente clienteLista in ListaClientes)
+                    foreach (Cliente clienteLista in ListaClientes) //Actualizamos la lista con los clientes después de eliminarlo
                     {
                         String nombreApellidos = clienteLista.getApellidos();
                         nombreApellidos += ",";
@@ -194,7 +198,7 @@ namespace Clientes
             }
         }
 
-        public void LimpiarCampos()
+        public void LimpiarCampos() //Método para limpiar campos
         {
             TxtNombre.Clear();
             TxtApellidos.Clear();
@@ -205,7 +209,7 @@ namespace Clientes
             PctFoto.Image = null;
         }
 
-        public Boolean EmailValido()
+        public Boolean EmailValido() //Método para comprobar el correcto formato de un email
         {
             String email = TxtEmail.Text;
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
